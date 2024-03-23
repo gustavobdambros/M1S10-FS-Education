@@ -2,18 +2,16 @@ package br.com.fullstack.M1S10.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
-@Table(name = "tutor")
+@Table(name = "alunos")
 @Entity
 @Data
-@NoArgsConstructor
-public class Tutor {
+public class AlunoEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long tutorId;
+    private Long id;
 
+    @Column(nullable = false)
     private String nome;
-    private String especialidade;
 }

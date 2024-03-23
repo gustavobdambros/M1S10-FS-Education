@@ -4,19 +4,21 @@ import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-@Table(name = "material")
+@Table(name = "materiais")
 @Data
 @Entity
-@NoArgsConstructor
-public class Material {
+public class MaterialEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long materialId;
+    private Long id;
 
-    @JoinColumn(name = "agenda_id")
-    private Long agendaId;
+    @ManyToOne
+    @JoinColumn(name = "agenda_id", nullable = false)
+    private AgendaEntity agenda;
 
     private String descricao;
+
+    @Column(nullable = false)
     private String caminhoArquivo;
 }
