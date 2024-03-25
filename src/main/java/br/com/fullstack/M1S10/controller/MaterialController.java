@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/materiais")
+@RequestMapping("materiais")
 public class MaterialController {
 
     private final MaterialService service;
@@ -24,24 +24,33 @@ public class MaterialController {
         return ResponseEntity.ok(service.buscarTodos());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<MaterialEntity> getId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
 
-    @PostMapping
-    public ResponseEntity<MaterialEntity> post(@RequestBody MaterialEntity request) {
-        return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(request));
+    @GetMapping("agenda-id/{agendaId}")
+    public ResponseEntity<List<MaterialEntity>> getAgendaId(@PathVariable Long agendaId) {
+        return ResponseEntity.ok(service.buscarPorAgenda(agendaId));
     }
 
-    @PutMapping("/{id}")
-    public ResponseEntity<MaterialEntity> put(@PathVariable Long id, @RequestBody MaterialEntity request) {
+    @PostMapping
+    public ResponseEntity<MaterialEntity> post(@RequestBody MaterialEntity request) {
+        return ResponseEntity.status(HttpStatus.CREATED)
+                .body(service.criar(request));
+    }
+
+    @PutMapping("{id}")
+    public ResponseEntity<MaterialEntity> put(
+            @PathVariable Long id, @RequestBody MaterialEntity request
+    ) {
         return ResponseEntity.ok(service.alterar(id, request));
     }
 
-    @DeleteMapping("/{id}")
-    public ResponseEntity<MaterialEntity> delete(@PathVariable Long id) {
+    @DeleteMapping("{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id) {
         service.excluir(id);
         return ResponseEntity.noContent().build();
     }
+
 }

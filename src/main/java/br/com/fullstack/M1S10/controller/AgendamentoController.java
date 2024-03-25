@@ -34,7 +34,7 @@ public class AgendamentoController {
         return ResponseEntity.ok(service.buscarPorAlunoId(alunoId));
     }
 
-    @GetMapping("aluno-id/{alunoId}/futuros")
+    @GetMapping("aluno-id/{alunoId}/vigentes")
     public ResponseEntity<List<AgendaEntity>> getProximosPorAlunoId(@PathVariable Long alunoId) {
         return ResponseEntity.ok(service.buscarProximosPorAlunoId(alunoId));
     }
@@ -44,7 +44,7 @@ public class AgendamentoController {
         return ResponseEntity.ok(service.buscarPorTutorId(tutorId));
     }
 
-    @GetMapping("tutor-id/{tutorId}/futuros")
+    @GetMapping("tutor-id/{tutorId}/vigentes")
     public ResponseEntity<List<AgendaEntity>> getProximosPorTutorId(@PathVariable Long tutorId) {
         return ResponseEntity.ok(service.buscarProximosPorTutorId(tutorId));
     }
@@ -67,4 +67,5 @@ public class AgendamentoController {
         service.excluir(id);
         return ResponseEntity.noContent().build();
     }
+
 }

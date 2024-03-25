@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/tutores")
+@RequestMapping("tutores")
 public class TutorController {
 
     private final TutorService service;
@@ -24,7 +24,7 @@ public class TutorController {
         return ResponseEntity.ok(service.buscarTodos());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<TutorEntity> getId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
@@ -34,12 +34,12 @@ public class TutorController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(request));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<TutorEntity> put(@PathVariable Long id, @RequestBody TutorEntity request) {
         return ResponseEntity.ok(service.alterar(id, request));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<TutorEntity> delete(@PathVariable Long id) {
         service.excluir(id);
         return ResponseEntity.noContent().build();

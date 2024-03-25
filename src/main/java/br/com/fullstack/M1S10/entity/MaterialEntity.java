@@ -2,7 +2,6 @@ package br.com.fullstack.M1S10.entity;
 
 import jakarta.persistence.*;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 @Table(name = "materiais")
 @Data

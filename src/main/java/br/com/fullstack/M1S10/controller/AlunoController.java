@@ -10,7 +10,7 @@ import java.util.List;
 
 
 @RestController
-@RequestMapping("/alunos")
+@RequestMapping("alunos")
 public class AlunoController {
 
     private final AlunoService service;
@@ -24,7 +24,7 @@ public class AlunoController {
         return ResponseEntity.ok(service.buscarTodos());
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("{id}")
     public ResponseEntity<AlunoEntity> getId(@PathVariable Long id) {
         return ResponseEntity.ok(service.buscarPorId(id));
     }
@@ -34,12 +34,12 @@ public class AlunoController {
         return ResponseEntity.status(HttpStatus.CREATED).body(service.criar(request));
     }
 
-    @PutMapping("/{id}")
+    @PutMapping("{id}")
     public ResponseEntity<AlunoEntity> put(@PathVariable Long id, @RequestBody AlunoEntity request) {
         return ResponseEntity.ok(service.alterar(id, request));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("{id}")
     public ResponseEntity<AlunoEntity> delete(@PathVariable Long id) {
         service.excluir(id);
         return ResponseEntity.noContent().build();

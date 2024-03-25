@@ -92,4 +92,5 @@ public class AgendaServiceImpl implements AgendaService {
         tutorService.buscarPorId(tutorId);
         return repository.findByTutorIdAndDataGreaterThanOrderByData(tutorId, LocalDateTime.now());
     }
+
 }
